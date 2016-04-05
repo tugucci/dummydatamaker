@@ -47,7 +47,7 @@ for i in range(9,150):
     file.write("{\n")
     file.write("id: %d, \n" %(i))
     file.write('name: "%s %s",\n' %(n.rstrip('\n'), sn.rstrip('\n')))
-    file.write("languages: %s, \n" %(lang))
+    file.write("language: %s, \n" %(lang))
     file.write('location: "%s",\n' %(l.rstrip('\n')))
     file.write("coordinates: %s, \n" %(c))
     file.write("price: %d, \n" %(p))
