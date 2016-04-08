@@ -76,7 +76,7 @@ for i in range(9,150): # it starts from 9 because ids 1-8 already exist in the c
     file.write('occupation: "%s",\n' %(s.rstrip('\n')))
     file.write('image: "%s",\n' %(im.rstrip('\n')))
     file.write('extra: %s, \n' %(e.rstrip('\n')))
-    file.write("+swiped:false,\n")
+    file.write("swiped:false,\n")
     file.write("},\n")
     
 file.close()
