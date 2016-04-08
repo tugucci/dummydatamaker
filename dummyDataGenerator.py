@@ -1,8 +1,10 @@
+#!/usr/bin/python
+# -*- coding: iso-8859-10 -*-
+
 import random
 import linecache
 from geopy.geocoders import Nominatim
 
-file=open("output.txt","w") 
 
 def generatePrice():
     return random.randint(5, 40)
@@ -12,7 +14,7 @@ def getExtra():
         
 def getCoordinates(l):
     geolocator = Nominatim()
-    location = geolocator.geocode(l)
+    location = geolocator.geocode(l, timeout=20)
     
     coord = "{latitude: %s , longitude: %s }" %(location.latitude,location.longitude)
     print coord
@@ -20,23 +22,43 @@ def getCoordinates(l):
     
     
 def getImage():
-    return  linecache.getline("images.txt", random.randint(1, 12))
+    return  linecache.getline("images.txt", random.randint(1, 13))
 
+def getLocation(): #city is more likely to be Helsinki or Malmö
+    r = random.randint(1,8)
+    if r<7:    
+        l = linecache.getline("cities.txt", random.randint(1,156))#getting random location from the list
+    elif r==7:
+        l = ("Helsinki, Finland")
+    else:
+        l = ("Malmö, Sweden")
+        
+        
+    print (l)
+    return l
     
-def getLanguagePair():
-    
-    a = linecache.getline("languages.txt", random.randint(1, 185))
+def getLanguagePair(): # first language of a pair is more likely to be Swedish, English or Finnish
+    r = random.randint(1,8)
+    if r<3:
+        a = linecache.getline("languages.txt", random.randint(1, 185))
+    elif r<5:
+        a = ("Finnish")
+    elif r<7:
+        a = ("Swedish")
+    else:
+        a = ("English")                   
     b = linecache.getline("languages.txt", random.randint(1, 185))
     languagePair = '"%s , %s"' %(a.rstrip('\n'),b.rstrip('\n'))
     return languagePair                 
+
+file=open("output.txt","w") 
 
 
 for i in range(9,150):
     
     n = linecache.getline("names.txt", random.randint(1, 5042)) #getting random name from the list
     sn = linecache.getline("names.txt", random.randint(1, 5042))#getting random surname from the list
-    l = linecache.getline("cities.txt", random.randint(1,156))#getting random location from the list
-    print (l)
+    l = getLocation()
     s = linecache.getline("skills.txt", random.randint(1, 339))#getting random skill from the list
     c = getCoordinates(l) #get coordinated based on location
     lang= getLanguagePair() 
@@ -57,4 +79,4 @@ for i in range(9,150):
     file.write("},\n")
     
 file.close()
-
+print ("Success")
