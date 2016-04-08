@@ -54,7 +54,7 @@ def getLanguagePair(): # first language of a pair is more likely to be Swedish, 
 file=open("output.txt","w") 
 
 
-for i in range(9,150):
+for i in range(9,150): # it starts from 9 because ids 1-8 already exist in the code...
     
     n = linecache.getline("names.txt", random.randint(1, 5042)) #getting random name from the list
     sn = linecache.getline("names.txt", random.randint(1, 5042))#getting random surname from the list
@@ -76,6 +76,7 @@ for i in range(9,150):
     file.write('occupation: "%s",\n' %(s.rstrip('\n')))
     file.write('image: "%s",\n' %(im.rstrip('\n')))
     file.write('extra: %s, \n' %(e.rstrip('\n')))
+    file.write("+swiped:false,\n")
     file.write("},\n")
     
 file.close()
