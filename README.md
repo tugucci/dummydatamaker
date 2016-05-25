@@ -1,6 +1,6 @@
 # dummydatamaker  
 
-##### A python script for creating dummy profiles for the app im working on
+##### A python script for creating json dummy profiles for the app im working on
 
 
 **dependencies:**  
